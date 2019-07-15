@@ -1,4 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](https://images.viblo.asia/7cb4e436-5e13-46b4-a0f7-3d555895ff58.png)
+
+# Firebase Hosting là gì ?
+
+Firebase hosting là một dịch vụ lưu trữ của Google cung cấp môi trường hosting cho static web một cách an toán, nhanh chóng, dễ dàng và hoàn toàn miễn phí .
+
+# Tại sao lại là Firebase Hosting ?
+
+Hầu hết các dịch vụ web hosting sẽ tính phí hoặc sẽ chậm nếu chúng free , ngoài ra bạn phải trả một khoản phí cho chứng chỉ SSL để chuyển trang web của bạn thành một trang web an toàn với https
+Lưu trữ trên Firebase là hoàn toàn miễn phí và theo mặc định nó cung cấp chứng chỉ SSL và nó được cung cấp một tốc độ truy cập đáng ấn tượng ở bất cứ đâu .
+
+# Deploy React app lên Firebase Hosting
+
+## Demo
+
+Trong bài viết này mình sẽ demo deploy một React app lên Firebase Hosting
+
+### React app
 
 ## Available Scripts
 
@@ -25,44 +42,71 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Sau đó ta sử dụng lệnh
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+để build code
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Firebase:
 
-## Learn More
+Vào [firebase](https://firebase.google.com/) và đăng nhập với tài khoản Google rồi tạo một project ví dụ firebase-demo
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![](https://images.viblo.asia/aa06d0a0-dd2b-4df8-9f70-6e0a48127029.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Chọn Hosting
 
-### Code Splitting
+![](https://images.viblo.asia/ee51bbc5-2f4a-4ad2-8706-753ab2cb7a51.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Nhấn Get started rồi install Firebase CLI bằng lệnh :
 
-### Analyzing the Bundle Size
+```
+npm install -g firebase-tools
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Đăng nhập Google và khởi tạo
 
-### Making a Progressive Web App
+```
+firebase login
+firebase init
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Sau khi init
 
-### Advanced Configuration
+- Chọn Hosting
+- Chọn tên project vừa tạo khi nãy
+- **What do you want to use as your public directory?** build
+- **Configure as a single-page app (rewrite all urls to /index.html)?** Yes
+- **File build/index.html already exists. Overwrite?** No
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Chú thích :
 
-### Deployment
+- What do you want to use as your public directory? : ở đây yêu cầu chọn folder để render trang web . Với mặc định sẽ là thư mục tên là public nhưng chúng ta đã chạy npm build và tạo ra được thư mục build nên chọn file build
+- Configure as a single-page app (rewrite all urls to /index.html)? : có cấu hình ứng dụng như một single-page app không ? chúng ta sẽ chọn YES như vậy web sẽ chạy vào index.html . Nếu chọn NO họ sẽ tự tạo ra 1 file build và bên trong chứa file 404.html và index.html
+- File build/index.html already exists. Overwrite? : do chúng ta đã build và có file index.html nên ở đây họ hỏi có Overwrite không ? Chúng ta sẽ chọn là NO
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+![](https://images.viblo.asia/78151bf3-81ce-454f-b178-c6b356d84539.png)
 
-### `npm run build` fails to minify
+Sau đó firebase sẽ tạo cho chúng ta 2 file là .firebaserc và firebase.json
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Cuối cùng sử dụng lệnh
+
+```
+firebase deploy
+```
+
+Sau đó bạn sẽ đc trả lại Hosting URL
+
+Như vậy là các bạn đã deploy thành công react app lên firebase hosting rồi đấy rất đơn giản phải không nào
+
+Nếu muốn disable project đang chạy sử dụng lệnh
+
+```
+firebase hosting:disable
+```
+
+Nguồn tham khảo : https://firebase.google.com/docs/cli/
