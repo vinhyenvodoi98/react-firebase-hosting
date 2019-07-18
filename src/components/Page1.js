@@ -23,6 +23,7 @@ class Page1 extends Component {
             <h1>
               <strong>Page1</strong>
             </h1>
+            <h2>Hello world</h2>
           </Content>
         </div>
       </div>
