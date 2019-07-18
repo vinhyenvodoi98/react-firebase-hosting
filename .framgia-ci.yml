@@ -1,0 +1,21 @@
+project_type: javascript
+build:
+  unit_test:
+    image: node:8-slim
+    prepare:
+      - yarn --no-progress install --pure-lockfile
+      - framgia-ci run --logs
+test:
+  npm:
+    ignore: false
+    command: npm test
+
+deploy:
+  dev_server:
+    when:
+      branch: master
+    run: yarn deploy
+cache:
+  nodejs:
+    folder: node_modules
+    file: yarn.lock
