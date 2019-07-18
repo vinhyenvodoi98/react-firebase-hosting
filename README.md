@@ -110,3 +110,32 @@ firebase hosting:disable
 ```
 
 Nguồn tham khảo : https://firebase.google.com/docs/cli/
+
+## Deploy github pages with route using
+
+```javascript
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+
+  return (
+    <Router>
+      <div className='App'>
+        <Switch>
+          <Route exact path='/' component={Page1} />
+          <Route path='/page2' component={Page2} />
+        </Switch>
+      </div>
+    </Router>
+```
+
+### config package.json
+
+```javascript
+    "homepage": "https://vinhyenvodoi98.github.io/react-firebase-hosting",
+```
+
+and
+
+```javascript
+   "predeploy": "yarn run build",
+   "deploy": "gh-pages -d build",
+```
